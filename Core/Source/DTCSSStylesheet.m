@@ -714,13 +714,13 @@ extern unsigned int default_css_len;
 	NSMutableArray *matchingCascadingSelectors = [self matchingComplexCascadingSelectorsForElement:element];
 	[matchingCascadingSelectors sortUsingComparator:^NSComparisonResult(NSString *selector1, NSString *selector2)
 	 {
-		 NSInteger weightForSelector1 = [[_orderedSelectorWeights objectForKey:selector1] integerValue];
-		 NSInteger weightForSelector2 = [[_orderedSelectorWeights objectForKey:selector2] integerValue];
+		 NSInteger weightForSelector1 = [[self->_orderedSelectorWeights objectForKey:selector1] integerValue];
+		 NSInteger weightForSelector2 = [[self->_orderedSelectorWeights objectForKey:selector2] integerValue];
 		 
 		 if (weightForSelector1 == weightForSelector2)
 		 {
-			 weightForSelector1 += [_orderedSelectors indexOfObject:selector1];
-			 weightForSelector2 += [_orderedSelectors indexOfObject:selector2];
+			 weightForSelector1 += [self->_orderedSelectors indexOfObject:selector1];
+			 weightForSelector2 += [self->_orderedSelectors indexOfObject:selector2];
 		 }
 		 
 		 if (weightForSelector1 > weightForSelector2)

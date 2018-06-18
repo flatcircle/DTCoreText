@@ -83,7 +83,7 @@ NSString * const DTLazyImageViewDidFinishDownloadNotification = @"DTLazyImageVie
 		return;
 	}
 	
-	@autoreleasepool 
+	@autoreleasepool
 	{
 		if (!_urlRequest)
 		{
@@ -120,11 +120,11 @@ NSString * const DTLazyImageViewDidFinishDownloadNotification = @"DTLazyImageVie
 	
 	if (!self.image && (_url || _urlRequest) &&
 #if DTCORETEXT_USES_NSURLSESSION
-		 !_dataTask
+		!_dataTask
 #else
-		 !_connection
+		!_connection
 #endif
-		 && self.superview)
+		&& self.superview)
 	{
 		UIImage *image = [_imageCache objectForKey:_url];
 		
@@ -141,7 +141,7 @@ NSString * const DTLazyImageViewDidFinishDownloadNotification = @"DTLazyImageVie
 		}
 		
 		[self loadImageAtURL:_url];
-	}	
+	}
 }
 
 - (void)cancelLoading
@@ -299,7 +299,7 @@ didReceiveResponse:(NSURLResponse *)response
 
 #if DTCORETEXT_USES_NSURLSESSION
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask
-	 didReceiveData:(NSData *)data
+	didReceiveData:(NSData *)data
 #else
 -(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 #endif
@@ -364,7 +364,8 @@ didCompleteWithError:(nullable NSError *)error
 	
 	/* For progressive download */
 	if (_imageSource)
-		CFRelease(_imageSource), _imageSource = NULL;
+		CFRelease(_imageSource);
+		_imageSource = NULL;
 	
 	CFRunLoopStop(CFRunLoopGetCurrent());
 
@@ -385,7 +386,8 @@ didCompleteWithError:(nullable NSError *)error
 	
 	/* For progressive download */
 	if (_imageSource)
-		CFRelease(_imageSource), _imageSource = NULL;
+		CFRelease(_imageSource);
+	_imageSource = NULL;
 	
 	CFRunLoopStop(CFRunLoopGetCurrent());
 

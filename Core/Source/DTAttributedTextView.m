@@ -133,10 +133,10 @@
 	DTBlockPerformSyncIfOnMainThreadElseAsync(^{
 		
 		// need to reset the layouter because otherwise we get the old framesetter or cached layout frames
-		_attributedTextContentView.layouter=nil;
+		self->_attributedTextContentView.layouter=nil;
 		
 		// here we're layouting the entire string, might be more efficient to only relayout the paragraphs that contain these attachments
-		[_attributedTextContentView relayoutText];
+		[self->_attributedTextContentView relayoutText];
 		
 		// layout custom subviews for visible area
 		[self setNeedsLayout];
@@ -176,8 +176,8 @@
 		// ignore possibly delayed layout notification for a different width
 		if (optimalFrame.size.width == frame.size.width)
 		{
-			_attributedTextContentView.frame = optimalFrame;
-			self.contentSize = [_attributedTextContentView intrinsicContentSize];
+			self->_attributedTextContentView.frame = optimalFrame;
+			self.contentSize = [self->_attributedTextContentView intrinsicContentSize];
 		}
 	});
 }
