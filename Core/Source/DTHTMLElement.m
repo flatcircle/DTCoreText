@@ -46,7 +46,7 @@
 @end
 
 // global variables
-BOOL ___shouldUseiOS6Attributes = NO;
+BOOL ___shouldUseiOS6Attributes = YES;
 NSDictionary *_classesForNames = nil;
 
 
